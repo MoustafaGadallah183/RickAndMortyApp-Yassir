@@ -47,10 +47,7 @@ struct CharacterListView: View {
             .searchable(text: $viewModel.searchText, prompt: "Search by name")
             .overlay(emptyView)
             .navigationDestination(for: AppRoute.self) { route in
-                switch route {
-                case .characterDetail(let character):
-                    CharacterDetailView(character: character)
-                }
+                viewModel.coordinator.destination(for: route)
             }
         }
         .task { await viewModel.loadCharacters() }
