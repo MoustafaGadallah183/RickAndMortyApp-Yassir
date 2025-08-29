@@ -26,7 +26,7 @@ class CharactersRepo: CharactesRepoProtocol {
                 URLQueryItem(name: "page", value: "\(pageNumber)")
             ]
         )
-        return try await apiManager.request(endpoint, responseType: CharactersDTO.self)
+        return try await apiManager.request(endpoint,  responseType: CharactersDTO.self)
         
     }
     

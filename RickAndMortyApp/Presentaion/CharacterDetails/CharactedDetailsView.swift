@@ -64,6 +64,7 @@ private struct CharacterNameView: View {
             .fontWeight(.bold)
             .multilineTextAlignment(.center)
             .padding(.horizontal)
+          
     }
 }
 

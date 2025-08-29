@@ -24,7 +24,8 @@ class CharactersViewModel {
     
     init(coordinator: AppCoordinator, repo: CharactesRepoProtocol) {
         self.coordinator = coordinator
-        self.getCharactersUseCase = DashboardUseCase(repo: repo)
+        self.getCharactersUseCase = CharactersUseCase(repo: repo)
+        
     }
     
     

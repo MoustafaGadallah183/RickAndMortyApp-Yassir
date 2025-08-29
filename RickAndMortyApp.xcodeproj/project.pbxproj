@@ -38,9 +38,36 @@
 		7086FA402E5EECCD00F9BEDD /* RickAndMortyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickAndMortyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		709622072E610F3300E6B95C /* Exceptions for "RickAndMortyApp" folder in "RickAndMortyAppTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Coordinator/AppRoute.swift,
+				Data/Models/CharacterDTO.swift,
+				Domain/Entities/CharacterEntity.swift,
+				Domain/RepoProtocols/CharactesRepoProtocol.swift,
+			);
+			target = 7086FA352E5EECCD00F9BEDD /* RickAndMortyAppTests */;
+		};
+		709622082E610F3300E6B95C /* Exceptions for "RickAndMortyApp" folder in "RickAndMortyAppUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Coordinator/AppRoute.swift,
+				Data/Models/CharacterDTO.swift,
+				Domain/Entities/CharacterEntity.swift,
+				Domain/RepoProtocols/CharactesRepoProtocol.swift,
+			);
+			target = 7086FA3F2E5EECCD00F9BEDD /* RickAndMortyAppUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7086FA2A2E5EECCC00F9BEDD /* RickAndMortyApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				709622072E610F3300E6B95C /* Exceptions for "RickAndMortyApp" folder in "RickAndMortyAppTests" target */,
+				709622082E610F3300E6B95C /* Exceptions for "RickAndMortyApp" folder in "RickAndMortyAppUITests" target */,
+			);
 			path = RickAndMortyApp;
 			sourceTree = "<group>";
 		};

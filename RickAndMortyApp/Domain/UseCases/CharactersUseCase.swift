@@ -9,12 +9,13 @@ protocol CharactersUseCaseProtocol {
     func execute(pageNumber: Int) async throws -> CharacterBaseEntity
 }
 
-class DashboardUseCase: CharactersUseCaseProtocol {
+class CharactersUseCase: CharactersUseCaseProtocol {
     
     private let repo: CharactesRepoProtocol
     
     init(repo: CharactesRepoProtocol) {
         self.repo = repo
+        
     }
     
     func execute(pageNumber: Int = 1) async throws -> CharacterBaseEntity {
