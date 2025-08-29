@@ -106,6 +106,25 @@ RickAndMortyApp
 
 ---
 
+
+## 📦 Local Swift Packages
+
+This project includes two **local Swift Packages** to better organize core functionality and make it reusable across the app:
+
+### 1️⃣ Coordinator
+
+* Handles **navigation logic** and **app routing** in a reusable way.
+* Encapsulates the **Coordinator pattern**, supporting `NavigationStack` in SwiftUI.
+* Platform support: **iOS 17+, macOS 14+**.
+
+### 2️⃣ Networking
+
+* Provides **network layer functionality** for API calls.
+* Handles **HTTP requests, decoding, and error handling**.
+* Platform support: **iOS 17+**.
+
+
+
 ## ✨ Screenshots
 
 | Characters List                                                                          | Character Detail                                                                           |
