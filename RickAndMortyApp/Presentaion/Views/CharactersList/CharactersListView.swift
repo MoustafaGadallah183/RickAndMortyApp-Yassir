@@ -35,7 +35,7 @@ extension CharacterListView {
                             .onAppear {
                                 viewModel.loadMoreIfNeeded(character)
                             }
-                            .accessibilityIdentifier("CharacterRow_\(character.id ?? 0)") // <-- row identifier
+                            .accessibilityIdentifier("CharacterRow_\(character.id ?? 0)")
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
@@ -48,20 +48,20 @@ extension CharacterListView {
                             Spacer()
                         }
                         .listRowSeparator(.hidden)
-                        .accessibilityIdentifier("LoadingRow") // <-- loading row identifier
+                        .accessibilityIdentifier("LoadingRow")
                     }
                 }
             }
             .listStyle(PlainListStyle())
             .navigationTitle("Characters")
             .searchable(text: $viewModel.searchText, prompt: "Search by name")
-            .accessibilityIdentifier("CharactersList") // <-- list identifier
+            .accessibilityIdentifier("CharactersList")
             .overlay(emptyView)
             .navigationDestination(for: AppRoute.self) { route in
                 switch route {
                 case .characterDetail(let character):
                     CharacterDetailView(character: character)
-                        .accessibilityIdentifier("CharacterDetail_\(character.id ?? 0)") // <-- detail view identifier
+                        .accessibilityIdentifier("CharacterDetail_\(character.id ?? 0)")
                 }
             }
         }
@@ -76,7 +76,7 @@ extension CharacterListView {
                     systemImage: "person.3",
                     description: Text("Try searching again or check your connection.")
                 )
-                .accessibilityIdentifier("EmptyStateView") // <-- empty state identifier
+                .accessibilityIdentifier("EmptyStateView") 
             }
         }
     }
