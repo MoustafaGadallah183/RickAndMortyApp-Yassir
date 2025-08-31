@@ -25,11 +25,6 @@
 
 ---
 
-Got it 👍
-Here’s an enhanced version of your **Architecture** section that clearly states you used **Clean Architecture with MVVM**:
-
----
-
 ## 🏗 Architecture
 
 This project follows **Clean Architecture principles** combined with the **MVVM (Model–View–ViewModel) pattern** for a scalable, testable, and maintainable structure.
