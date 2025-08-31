@@ -2,10 +2,10 @@
 
 # Rick & Morty App 🛸✨
 
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/41e78468-9df0-4aa3-858b-d343f421e177" width="200" />
-   <img src="https://github.com/user-attachments/assets/220d334e-f809-4a44-9d6f-5d74f3d68341" width="200" />
-</p>
+<p align="center">  
+   <img src="https://github.com/user-attachments/assets/41e78468-9df0-4aa3-858b-d343f421e177" width="200" />  
+   <img src="https://github.com/user-attachments/assets/220d334e-f809-4a44-9d6f-5d74f3d68341" width="200" />  
+</p>  
 
 **Rick & Morty Explorer** is a modern iOS app built with **SwiftUI**, **Clean Architecture**, and **Swift Concurrency**. Explore, search, and view detailed profiles of characters from the Rick & Morty universe. The app is designed for **maintainability, testability, and smooth performance**.
 
@@ -13,15 +13,15 @@
 
 ## 🚀 Features
 
-* **Browse Characters**: Clean, scrollable list using `List` 
-* **Search & Filter**: Live search for characters by name.
-* **Character Detail View**: Status, species, origin, and other details.
-* **Pagination**: Dynamic load more while scrolling.
-* Modular Design: Networking and Coordinator implemented as local Swift Packages for reusability and separation of concerns.
-* **Swift Concurrency**: `async/await` for network calls.
-* **Clean Architecture**: MVVM + Coordinator for organized, maintainable code.
-* **Dependency Injection**: Easily swap repositories and coordinators for testing.
-* **Unit & UI Tests**:  UI flows (list, detail, search).
+* **Browse Characters**: Clean, scrollable list using `List`
+* **Search & Filter**: Live search for characters by name
+* **Character Detail View**: Status, species, origin, and other details
+* **Pagination**: Dynamic load more while scrolling
+* **Modular Design**: Networking and Coordinator implemented as local Swift Packages for reusability and separation of concerns
+* **Swift Concurrency**: `async/await` for network calls
+* **Clean Architecture**: MVVM + Coordinator for organized, maintainable code
+* **Dependency Injection**: Easily swap repositories and coordinators for testing
+* **Unit & UI Tests**: Covers UI flows (list, detail, search)
 
 ---
 
@@ -29,30 +29,61 @@
 
 This project follows **Clean Architecture principles** combined with the **MVVM (Model–View–ViewModel) pattern** for a scalable, testable, and maintainable structure.
 
-### Domain Layer
+### 🧩 Clean Architecture
 
-* **Entities**: Core business models such as `CharacterEntity`, `Info`, etc.
-* **Protocols**: Abstractions like `CharactesRepoProtocol` define repository contracts to ensure dependency inversion.
-* **Use Cases**: Encapsulate business logic, e.g., `FetchCharactersUseCase`.
+Clean Architecture ensures separation of concerns and enforces strict boundaries between layers:
 
-### Data Layer
+```text
+                   ┌───────────────────────────┐
+                   │        Presentation        │
+                   │   (SwiftUI + ViewModels)   │
+                   │ ───────────────────────── │
+                   │  * CharacterListView       │
+                   │  * CharacterDetailView     │
+                   │  * CharactersViewModel     │
+                   │  * Coordinator (Package)   │
+                   └──────────────▲────────────┘
+                                  │
+                                  │ calls UseCases
+                                  │
+                   ┌──────────────┴─────────────┐
+                   │          Domain             │
+                   │ ───────────────────────── │
+                   │  * Entities (Character)    │
+                   │  * Repo Protocols          │
+                   │  * UseCases                │
+                   │    - FetchCharacters       │
+                   └──────────────▲────────────┘
+                                  │
+                                  │ implemented by
+                                  │
+                   ┌──────────────┴─────────────┐
+                   │            Data             │
+                   │ ───────────────────────── │
+                   │  * Repository              │
+                   │    - CharactersRepository  │
+                   │  * Models (DTOs)           │
+                   │  * Networking (Package)    │
+                   └────────────────────────────┘
+```
 
-* Implements repository protocols defined in the domain.
-* Handles **network requests**, JSON **decoding**, and data mapping.
-* Provides a **Networking module** as a local Swift Package for modularity and reuse.
+### 🔑 Interaction Flow
 
-### Presentation Layer (MVVM)
+1. **Presentation Layer (SwiftUI + ViewModel + Coordinator)**
 
-* **View (SwiftUI)**: `CharacterListView`, `CharacterCardView`, `CharacterDetailView` , `CharacterRowView`.
-* **ViewModel**: `CharactersViewModel` manages state, search, pagination, and error handling.
-* **Coordinator** (via local Swift Package): Encapsulates navigation flows and separates them from view logic.
+   * Handles **UI state** and **navigation**
+   * Calls **Use Cases** from the Domain layer
 
-### Key Benefits
+2. **Domain Layer**
 
-* **MVVM** keeps UI logic (`View`) separated from business logic (`ViewModel`).
-* **Clean Architecture** enforces clear boundaries between layers, improving testability and scalability.
-* **Coordinator** ensures navigation is decoupled and easier to extend.
+   * Defines **Entities**, **Protocols**, and **Use Cases**
+   * Enforces **business rules** independent of frameworks
 
+3. **Data Layer**
+
+   * Implements repository protocols from Domain
+   * Uses **Networking Package** for API requests
+   * Maps **DTOs → Entities**
 
 ---
 
@@ -68,21 +99,18 @@ This project follows **Clean Architecture principles** combined with the **MVVM 
 
 ## 🧪 Testing
 
-
 ### UI Tests
 
 * `CharacterListUITests.swift`
   Tests UI flows such as:
 
-  * Characters list existence
-  * Row tap navigates to detail
-  * Search functionality filters results
+- Characters list existence
+- Row tap navigates to detail
+- Search functionality filters results
 
 ---
 
 ## 🗂 Project Structure
-
-
 
 ```
 RickAndMortyApp
@@ -93,53 +121,56 @@ RickAndMortyApp
 │   │   └── CharactesRepoProtocol.swift
 │   └── UseCases
 │       └── CharactersUseCase.swift
+│
 ├── DI
-     └── AppDependencies.swift
+│   └── AppDependencies.swift
+│
 ├── Data
-│   |
 │   ├── Repository
 │   │   └── CharactersRepository.swift
 │   └── Models
 │       └── CharacterDTO.swift
+│
 ├── Presentation
 │   ├── Views
 │   │   ├── CharacterListView.swift
 │   │   ├── CharacterCardView.swift
-│   │   └── CharacterDetailView.swift
-        └── CharacterRowView.swift
+│   │   ├── CharacterDetailView.swift
+│   │   └── CharacterRowView.swift
 │   ├── ViewModels
 │   │   └── CharactersViewModel.swift
-│   
+│
 ├── Resources
 │   └── Assets.xcassets
+│
 ├── Tests
 │   ├── RickAndMortyAppTests
 │   │   └── CharactersViewModelTests.swift
 │   └── RickAndMortyAppUITests
 │       └── CharacterListUITests.swift
+│
 └── README.md
 ```
 
 ---
 
-
 ## 📦 Local Swift Packages
 
-This project includes two **local Swift Packages** to better organize core functionality and make it reusable across the app:
+This project includes two **local Swift Packages** for modularity and reuse:
 
 ### 1️⃣ Coordinator
 
-* Handles **navigation logic** and **app routing** in a reusable way.
-* Encapsulates the **Coordinator pattern**, supporting `NavigationStack` in SwiftUI.
-* Platform support: **iOS 17+, macOS 14+**.
+* Handles **navigation logic** and **app routing**
+* Encapsulates the **Coordinator pattern**, supporting `NavigationStack` in SwiftUI
+* Platform support: **iOS 17+, macOS 14+**
 
 ### 2️⃣ Networking
 
-* Provides **network layer functionality** for API calls.
-* Handles **HTTP requests, decoding, and error handling**.
-* Platform support: **iOS 17+**.
+* Provides **network layer functionality** for API calls
+* Handles **HTTP requests, decoding, and error handling**
+* Platform support: **iOS 17+**
 
-
+---
 
 ## ✨ Screenshots
 
@@ -147,3 +178,6 @@ This project includes two **local Swift Packages** to better organize core funct
 | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | ![List](https://github.com/user-attachments/assets/41e78468-9df0-4aa3-858b-d343f421e177) | ![Detail](https://github.com/user-attachments/assets/220d334e-f809-4a44-9d6f-5d74f3d68341) |
 
+---
+
+Would you like me to also **draw a proper PNG diagram (with arrows and colors)** that you can add directly into your README instead of the ASCII one? It would look more professional on GitHub.
