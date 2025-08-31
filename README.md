@@ -17,6 +17,7 @@
 * **Search & Filter**: Live search for characters by name.
 * **Character Detail View**: Status, species, origin, and other details.
 * **Pagination**: Dynamic load more while scrolling.
+* Modular Design: Networking and Coordinator implemented as local Swift Packages for reusability and separation of concerns.
 * **Swift Concurrency**: `async/await` for network calls.
 * **Clean Architecture**: MVVM + Coordinator for organized, maintainable code.
 * **Dependency Injection**: Easily swap repositories and coordinators for testing.
@@ -24,23 +25,39 @@
 
 ---
 
+Got it 👍
+Here’s an enhanced version of your **Architecture** section that clearly states you used **Clean Architecture with MVVM**:
+
+---
+
 ## 🏗 Architecture
+
+This project follows **Clean Architecture principles** combined with the **MVVM (Model–View–ViewModel) pattern** for a scalable, testable, and maintainable structure.
 
 ### Domain Layer
 
-* **Entities**: `CharacterEntity`, `Info`, etc.
-* **Protocols**: `CharactesRepoProtocol` defines repository contracts.
-* **Use Cases**: Encapsulate business logic like fetching characters.
+* **Entities**: Core business models such as `CharacterEntity`, `Info`, etc.
+* **Protocols**: Abstractions like `CharactesRepoProtocol` define repository contracts to ensure dependency inversion.
+* **Use Cases**: Encapsulate business logic, e.g., `FetchCharactersUseCase`.
 
 ### Data Layer
 
-* Handles network requests, decoding JSON, and repository implementations.
+* Implements repository protocols defined in the domain.
+* Handles **network requests**, JSON **decoding**, and data mapping.
+* Provides a **Networking module** as a local Swift Package for modularity and reuse.
 
-### Presentation Layer
+### Presentation Layer (MVVM)
 
-* SwiftUI Views: `CharacterListView`, `CharacterCardView`, `CharacterDetailView`.
-* `CharactersViewModel` manages state, search, pagination, and navigation.
-* `Coordinator` handles navigation flows.
+* **View (SwiftUI)**: `CharacterListView`, `CharacterCardView`, `CharacterDetailView` , `CharacterRowView`.
+* **ViewModel**: `CharactersViewModel` manages state, search, pagination, and error handling.
+* **Coordinator** (via local Swift Package): Encapsulates navigation flows and separates them from view logic.
+
+### Key Benefits
+
+* **MVVM** keeps UI logic (`View`) separated from business logic (`ViewModel`).
+* **Clean Architecture** enforces clear boundaries between layers, improving testability and scalability.
+* **Coordinator** ensures navigation is decoupled and easier to extend.
+
 
 ---
 
@@ -75,13 +92,14 @@ RickAndMortyApp
 ├── Domain
 │   ├── Entities
 │   │   └── CharacterEntity.swift
-│   ├── Protocols
+│   ├── RepoProtocols
 │   │   └── CharactesRepoProtocol.swift
 │   └── UseCases
 │       └── CharactersUseCase.swift
+├── DI
+     └── AppDependencies.swift
 ├── Data
-│   ├── Network
-│   │   └── NetworkManager.swift
+│   |
 │   ├── Repository
 │   │   └── CharactersRepository.swift
 │   └── Models
@@ -91,6 +109,7 @@ RickAndMortyApp
 │   │   ├── CharacterListView.swift
 │   │   ├── CharacterCardView.swift
 │   │   └── CharacterDetailView.swift
+        └── CharacterRowView.swift
 │   ├── ViewModels
 │   │   └── CharactersViewModel.swift
 │   
