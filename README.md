@@ -180,4 +180,3 @@ This project includes two **local Swift Packages** for modularity and reuse:
 
 ---
 
-Would you like me to also **draw a proper PNG diagram (with arrows and colors)** that you can add directly into your README instead of the ASCII one? It would look more professional on GitHub.
